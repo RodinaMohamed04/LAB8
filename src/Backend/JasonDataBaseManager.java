@@ -203,7 +203,16 @@ public class JasonDataBaseManager {
                 for (int k = 0; k < studentArr.length(); k++) {
                     int studentId = studentArr.getInt(k);
 
-                    c.getStudents().add(new Student("temp",studentId,"temp","temp"));
+                    //c.getStudents().add(new Student("temp",studentId,"temp","temp"));
+                    User realUser = JasonDataBaseManager.read().stream()
+        .filter(u -> u.getUserId() == studentId && u instanceof Student)
+        .findFirst()
+        .orElse(null);
+
+if (realUser != null) {
+    c.getStudents().add((Student) realUser);
+}
+
 
                 }
                 JSONArray lessonArr = j.getJSONArray("lessons");

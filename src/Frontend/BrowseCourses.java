@@ -35,32 +35,41 @@ public class BrowseCourses extends javax.swing.JFrame {
          loadCourses();
     }
     
-    private void enrollSelectedCourse(){ int selectedRow = jTable1.getSelectedRow();
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Please select a course first!");
-            return;
-        }
-
-        String courseId = jTable1.getValueAt(selectedRow, 0).toString();
-       
-        /*f (student.getEnrolledCourses().contains(courseId)) {
-            JOptionPane.showMessageDialog(this, "You are already enrolled in this course.");
-            return;
-        }
-
-        us.enrollStudent(student.getUserId(), courseId);
-
-   
-        Course c = courseService.getCourseById(courseId);
-        if (c != null) {
-            courseService.addStudentToCourse(courseId, student);
-        }
-
-        JOptionPane.showMessageDialog(this, "Enrolled successfully in course: " + courseId);
-
- */
-        loadCourses();
+    private void enrollSelectedCourse() {
+    int selectedRow = jTable1.getSelectedRow();
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Please select a course first!");
+        return;
     }
+
+    String courseId = jTable1.getValueAt(selectedRow, 0).toString();
+
+    if (student.getEnrolledCourses().contains(courseId)) {
+        JOptionPane.showMessageDialog(this, "You are already enrolled in this course.");
+        return;
+    }
+
+    us.enrollStudent(student.getUserId(), courseId);
+
+    Course c = courseService.getCourseById(courseId);
+    if (c != null) {
+        courseService.addStudentToCourse(courseId, student);
+    }
+
+    JOptionPane.showMessageDialog(this, "Enrolled successfully in course: " + courseId);
+
+    // Reload table and re-select the same course
+    loadCourses();
+    for (int i = 0; i < jTable1.getRowCount(); i++) {
+        Object idObj = jTable1.getValueAt(i, 0);
+        if (idObj != null && courseId.equals(idObj.toString())) {
+            jTable1.setRowSelectionInterval(i, i);
+            jTable1.scrollRectToVisible(jTable1.getCellRect(i, 0, true));
+            break;
+        }
+    }
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -197,6 +206,7 @@ private void loadCourses() {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 //new BrowseCourses().setVisible(true);
             }
