@@ -7,10 +7,7 @@ package Frontend;
 import Backend.Instructor;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author hp
- */
+
 public class AddLessons extends javax.swing.JFrame {
     private Instructor instructor;
 
