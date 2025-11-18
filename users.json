@@ -72,6 +72,86 @@
                 "courseId": "JS101"
             },
             {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JS101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JS101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JS101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JS101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JS101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JS101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JS101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JS101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JS101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JS101"
+            },
+            {
                 "completedLessons": ["L1"],
                 "courseId": "PY101"
             },
@@ -89,6 +169,46 @@
         "Email": "charlie@student.com",
         "enrolledCourses": ["JAVA101"],
         "progress": [
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
             {
                 "completedLessons": [],
                 "courseId": "JAVA101"
@@ -218,6 +338,86 @@
             },
             {
                 "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
                 "courseId": "CPP101"
             },
             {
@@ -232,7 +432,13 @@
     {
         "Role": "student",
         "Email": "sr3@gmail.com",
-        "enrolledCourses": ["PY101"],
+        "enrolledCourses": [
+            "PY101",
+            "CPP101",
+            "MD37",
+            "PDC5",
+            "JAVA101"
+        ],
         "progress": [
             {
                 "completedLessons": [],
@@ -240,7 +446,155 @@
             },
             {
                 "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "MD37"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PDC5"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
+            {
+                "completedLessons": [],
                 "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "MD37"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PDC5"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "MD37"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PDC5"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "MD37"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PDC5"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "MD37"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PDC5"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
             },
             {
                 "completedLessons": [],
@@ -249,6 +603,22 @@
             {
                 "completedLessons": [],
                 "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "MD37"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PDC5"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
             }
         ],
         "ID": 102,
@@ -257,27 +627,74 @@
     },
     {
         "Role": "instructor",
-        "Email": "ra19@gmail.com",
-        "createdCourses": [],
+        "Email": "ty@gmail.com",
+        "createdCourses": [
+            "mu",
+            "PDC3",
+            "MD37"
+        ],
         "ID": 100,
-        "Hash password": "096632895e4372a6c49075c50dd14e34f1ed899f8ed5418d2b9b7ca992f04c8c",
-        "Name": "rodina ahmed"
-    },
-    {
-        "Role": "student",
-        "Email": "rb3@gmail.com",
-        "enrolledCourses": [],
-        "progress": [],
-        "ID": 100,
-        "Hash password": "9b4db0c2b320e010709d560ce343aa219205ece4f2bc4fe204098990c4278a91",
-        "Name": "rody bb"
+        "Hash password": "4f9db7f8e5068a3ed09c4bdf2ddd980a290126b497155aba1b4a385622d13144",
+        "Name": "tyt ty"
     },
     {
         "Role": "instructor",
-        "Email": "rg2@gmail.com",
+        "Email": "ror@gamil.com",
         "createdCourses": [],
-        "ID": 100,
-        "Hash password": "d2d8c9e4755ba00f7c3db59979ac0b88e0b054cbf33b0af100027d017fba4ec7",
-        "Name": "ritage ashraf"
+        "ID": 101,
+        "Hash password": "99b3d7ff3b17925dcac2e1288731f672694ea071ba0fa758e517e963c5aff3df",
+        "Name": "rowan mostafa"
+    },
+    {
+        "Role": "student",
+        "Email": "rosm@gmail.com",
+        "enrolledCourses": [],
+        "progress": [],
+        "ID": 102,
+        "Hash password": "7ef9ec0cf2c4facafddd03ab96eca0939d6749b49952bd816f1e0cc6901941d5",
+        "Name": "Rosina Moh"
+    },
+    {
+        "Role": "student",
+        "Email": "mo@gamil.com",
+        "enrolledCourses": [
+            "PY101",
+            "PDC5",
+            "MD37",
+            "CPP101"
+        ],
+        "progress": [
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PDC5"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "MD37"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PDC5"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "MD37"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            }
+        ],
+        "ID": 103,
+        "Hash password": "f4a4ce5fa6340a35aa5db0b4b6d31a6fbaa6052356460dbb0537657d803f5be2",
+        "Name": "mostafa mohamed"
     }
 ]

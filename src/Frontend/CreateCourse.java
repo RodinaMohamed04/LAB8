@@ -168,25 +168,29 @@ public class CreateCourse extends javax.swing.JFrame {
     }//GEN-LAST:event_IDActionPerformed
 
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
-String title = TextTitle.getText().trim();
+        String title = TextTitle.getText().trim();
         String description = TextDescription.getText().trim();
         String Id = ID.getText().trim();
 
-        if (title.isEmpty() || description.isEmpty()|| Id.isEmpty()) {
+        if (title.isEmpty() || description.isEmpty() || Id.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill all fields!");
             return;
         }
 
-    Course c = new Course(Id,title,description,instructor.getUserId());
-    c.setCourseName(title);
-    c.setCourseId(Id);
-    c.setCourseDescription(description);
+        // Create course object
+        Course c = new Course(Id, title, description, instructor.getUserId());
 
-   
-    cs.addCourse(c);
 
-    JOptionPane.showMessageDialog(this, "Course Added successfully!");
+        cs.addCourse(c);
 
+
+        instructor.addCreatedCourseId(Id);
+
+        us.addCourseToInstructor(instructor.getUserId(),Id);
+
+        JOptionPane.showMessageDialog(this, "Course Added successfully!");
+        
+      
 
     }//GEN-LAST:event_SaveActionPerformed
 

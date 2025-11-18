@@ -1,74 +1,65 @@
 [
-    {
-        "courseName": "Python Basics",
-        "students": [
-            1,
-            101,
-            102
-        ],
-        "InstructorId": 10,
-        "courseId": "PY101",
-        "courseDescription": "Intro to Python programming",
-        "lessons": [
-            {
-                "lessonId": "L1",
-                "resources": [],
-                "title": "Variables & Data Types",
-                "content": "Learn about Python variables and data types"
-            },
-            {
-                "lessonId": "L2",
-                "resources": [],
-                "title": "Control Flow",
-                "content": "If statements and loops in Python"
-            }
-        ]
-    },
-    {
-        "courseName": "Java Basics",
-        "students": [2],
-        "InstructorId": 10,
-        "courseId": "JAVA101",
-        "courseDescription": "Intro to Java programming",
-        "lessons": [
-            {
-                "lessonId": "L1",
-                "resources": [],
-                "title": "Variables",
-                "content": "Java variables and types"
-            },
-            {
-                "lessonId": "L2",
-                "resources": [],
-                "title": "Loops",
-                "content": "For, while loops in Java"
-            }
-        ]
-    },
-    {
-        "courseName": "C++ Basics",
-        "students": [
-            1,
-            100,
-            101,
-            100
-        ],
-        "InstructorId": 11,
-        "courseId": "CPP101",
-        "courseDescription": "Intro to C++ programming",
-        "lessons": [
-            {
-                "lessonId": "L1",
-                "resources": [],
-                "title": "Syntax & Variables",
-                "content": "Basic syntax and variables in C++"
-            },
-            {
-                "lessonId": "L2",
-                "resources": [],
-                "title": "Loops & Conditionals",
-                "content": "Control flow in C++"
-            }
-        ]
-    }
+  {
+    "courseName": "Python Basics",
+    "students": [1, 101, 102, 103],
+    "InstructorId": 10,
+    "courseId": "PY101",
+    "courseDescription": "Intro to Python programming",
+    "lessons": [
+      {
+        "lessonId": "L1",
+        "resources": [],
+        "title": "Variables & Data Types",
+        "content": "Learn about Python variables and data types"
+      },
+      {
+        "lessonId": "L2",
+        "resources": [],
+        "title": "Control Flow",
+        "content": "If statements and loops in Python"
+      }
+    ]
+  },
+  {
+    "courseName": "Java Basics",
+    "students": [2, 101, 100, 102],
+    "InstructorId": 10,
+    "courseId": "JAVA101",
+    "courseDescription": "Intro to Java programming",
+    "lessons": [
+      {
+        "lessonId": "L1",
+        "resources": [],
+        "title": "Variables",
+        "content": "Java variables and types"
+      },
+      {
+        "lessonId": "L2",
+        "resources": [],
+        "title": "Loops",
+        "content": "For, while loops in Java"
+      }
+    ]
+  },
+  {
+    "courseName": "C++ Basics",
+    "students": [1, 100, 101, 102, 103],
+    "InstructorId": 11,
+    "courseId": "CPP101",
+    "courseDescription": "Intro to C++ programming",
+    "lessons": [
+      {
+        "lessonId": "L1",
+        "resources": [],
+        "title": "Syntax & Variables",
+        "content": "Basic syntax and variables in C++"
+      },
+      {
+        "lessonId": "L2",
+        "resources": [],
+        "title": "Loops & Conditionals",
+        "content": "Control flow in C++"
+      }
+    ]
+  }
 ]

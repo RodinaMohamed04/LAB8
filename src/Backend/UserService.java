@@ -1,5 +1,6 @@
 package Backend;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 public class UserService {
     private ArrayList<User> users;
     public UserService() {
@@ -27,9 +28,22 @@ public void addUser(User u) {
 public void enrollStudent(int id,String courseID) {
     User u=getUserbyID(id);
     if(u instanceof Student s) {
-        s.addCourse(courseID);
-        saveUsers();
+        
+        /*if(s.getEnrolledCourses().contains(courseID)){
+        JOptionPane.showMessageDialog(null, 
+                "You already enrolled in this course!", 
+                "Enrollment Error", 
+                JOptionPane.WARNING_MESSAGE);
+        } else {*/
+            s.addCourse(courseID);
+            saveUsers();
+           /* JOptionPane.showMessageDialog(null, 
+                "Course enrolled successfully!", 
+                "Enrollment", 
+                JOptionPane.INFORMATION_MESSAGE);*/
+        //}
     }}
+
 public void markLessonCompleted(int id, String courseID, String lessonID) {
         User u = getUserbyID(id);
         if (u instanceof Student s) {
