@@ -158,33 +158,7 @@ private void loadCourses() {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new String[]{"Course Id", "Course Name"});
 
-         /*try {
-          
-            BufferedReader reader = new BufferedReader(new FileReader("courses.json"));
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                sb.append(line);
-            }
-           // reader.close();
-
-            JSONArray courses = new JSONArray(new String(Files.readAllBytes(Paths.get())));
-
-            for (int i = 0; i < courses.length(); i++) {
-                JSONObject course = courses.getJSONObject(i);
-                String id = course.getString("courseId");
-                String name = course.getString("title");
-              
-                String avail = "Available";
-
-                model.addRow(new Object[]{id, name, avail, "Enroll"});
-            }
-
-        } catch (Exception e) {
-          //dummy data
-            model.addRow(new Object[]{"C101", "Java Basics", "Available", "Enroll"});
-            model.addRow(new Object[]{"C205", "OOP", "Available", "Enroll"});
-        }*/
+         
          ArrayList<Course> c=courseService.displayCourses();
          //for (Course c : courseService.getAllCourses())
          for(int i=0;i<c.size();i++){

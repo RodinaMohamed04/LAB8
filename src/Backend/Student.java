@@ -43,6 +43,15 @@ public class Student extends User {
             }
         }
     }
+    
+     public boolean isLessonCompleted(String courseId, String lessonId) {
+    for (StudentCourseProgress p : coursesProgress) {
+        if (p.courseId.equals(courseId) && p.completedLessons.contains(lessonId)) {
+            return true;
+        }
+    }
+    return false;
+}
 
     public ArrayList<String> getEnrolledCourses() {
         return enrolledCourses;

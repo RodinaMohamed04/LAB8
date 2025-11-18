@@ -152,6 +152,14 @@
                 "courseId": "JS101"
             },
             {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JS101"
+            },
+            {
                 "completedLessons": ["L1"],
                 "courseId": "PY101"
             },
@@ -169,6 +177,10 @@
         "Email": "charlie@student.com",
         "enrolledCourses": ["JAVA101"],
         "progress": [
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
             {
                 "completedLessons": [],
                 "courseId": "JAVA101"
@@ -292,6 +304,14 @@
             "PY101"
         ],
         "progress": [
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
             {
                 "completedLessons": [],
                 "courseId": "CPP101"
@@ -550,6 +570,26 @@
             },
             {
                 "completedLessons": [],
+                "courseId": "MD37"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PDC5"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
                 "courseId": "PY101"
             },
             {
@@ -631,7 +671,8 @@
         "createdCourses": [
             "mu",
             "PDC3",
-            "MD37"
+            "MD37",
+            "445ew"
         ],
         "ID": 100,
         "Hash password": "4f9db7f8e5068a3ed09c4bdf2ddd980a290126b497155aba1b4a385622d13144",
@@ -664,6 +705,22 @@
             "CPP101"
         ],
         "progress": [
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PDC5"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "MD37"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
             {
                 "completedLessons": [],
                 "courseId": "PY101"

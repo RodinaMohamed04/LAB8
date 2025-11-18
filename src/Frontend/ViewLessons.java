@@ -4,7 +4,14 @@
  */
 package Frontend;
 
+import Backend.Course;
+import Backend.CourseService;
+import Backend.Lesson;
 import Backend.Student;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,15 +20,80 @@ import Backend.Student;
 public class ViewLessons extends javax.swing.JFrame {
 
     private Student student;
+    private Course course;
+    private CourseService courseService;
+    private String courseId;
 
     /**
      * Creates new form ViewLessons
      */
     public ViewLessons(Student student, String courseId) {
         this.student = student;
+        this.courseId=courseId;
         initComponents();
         this.setLocationRelativeTo(null);
+        
+       CourseService courseService = new CourseService();
+        course = courseService.getCourseById(courseId);
+
+        if (course == null) {
+            JOptionPane.showMessageDialog(this, "Course not found!");
+            return;
+        }
+
+        loadLessons();
     }
+
+    // Load lessons into JTable
+    private void loadLessons() {
+       DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        /*CourseService cs = new CourseService();
+        ArrayList<Lesson> lessons = cs.displayLessons(course.getCourseId()); 
+
+        for (Lesson lesson : lessons) {
+            boolean completed = student.isLessonCompleted(course.getCourseId(), lesson.getLessonId());
+            Object[] row = { lesson.getLessonId(), lesson.getTitle(), completed ? "Yes" : "No" };
+            model.addRow(row);
+        }
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new String[]{"Lesson Id", "Lesson Name"});
+
+         */
+         ArrayList<Lesson> lessons =courseService.displayLessons(course.getCourseId());
+         //for (Course c : courseService.getAllCourses())
+         for(int i=0;i<lessons.size();i++){
+             Lesson l2=lessons.get(i);
+         model.addRow(new Object []{l2.getLessonId(),l2.getTitle()});
+         }
+         jTable1.setModel(model);
+    }
+    
+    /*private void loadLessons() {
+        // For demo purposes, assume Course has getLessons() returning ArrayList<String> lesson titles
+        Course course = courseService.getCourseById(courseId);
+        if(course == null) {
+            JOptionPane.showMessageDialog(this, "Course not found!");
+            return;
+        }
+
+        ArrayList<Lesson> lessons = course.getLessons(); // replace with your actual lessons method
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new String[]{"Lesson Id", "Lesson Title", "Completed"});
+
+        int id = 1;
+        for(Lesson title : lessons) {
+            model.addRow(new Object[]{id++, title, "No"}); // you can add actual completion status if you have
+        }
+
+        jTable1.setModel(model);
+    }*/
+
+
+
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.

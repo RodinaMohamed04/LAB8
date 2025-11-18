@@ -110,5 +110,15 @@ public class CourseService {
     }
     return result;
 }
+    public ArrayList<Lesson> displayLessons(String courseId) {
+    Course c = getCourseById(courseId);
+    if (c != null) {
+        return new ArrayList<>(c.getLessons()); 
+    } else {
+        return new ArrayList<>(); 
+    }
+}
+
+   
 }
 

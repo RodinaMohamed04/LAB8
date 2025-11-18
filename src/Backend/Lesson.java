@@ -30,5 +30,9 @@ public class Lesson {
         resources.add(resource);
     }
 
+    public Object getResource() {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
 }
 

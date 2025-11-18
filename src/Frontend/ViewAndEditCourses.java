@@ -185,7 +185,9 @@ public class ViewAndEditCourses extends javax.swing.JFrame {
     }
 
     String courseId = jTable1.getValueAt(selectedRow, 0).toString();
-        ManageLessons ml = new ManageLessons(instructor);
+    Course selectedCourse = cs.getCourseById(courseId);
+
+ManageLessons ml = new ManageLessons(instructor, selectedCourse);
         ml.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed

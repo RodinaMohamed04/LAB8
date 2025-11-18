@@ -4,19 +4,41 @@
  */
 package Frontend;
 
+import Backend.Course;
+import Backend.CourseService;
 import Backend.Instructor;
+import Backend.Lesson;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 public class ManageLessons extends javax.swing.JFrame {
     private Instructor instructor;
+    private CourseService cs;
+    private String courseId;
+    private Course course;
 
     /**
      * Creates new form ManageLessons
      */
-    public ManageLessons(Instructor instructor) {
-        initComponents();
+    public ManageLessons(Instructor instructor, Course course) {
+        
         this.instructor=instructor;
+        this.course = course;
+        cs = new CourseService();
         this.setLocationRelativeTo(null); 
+        initComponents();
+        loadLessons();
+        
     }
+     private void loadLessons() {
+    ArrayList<Lesson> lessons = cs.displayLessons(course.getCourseId());
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0);
+
+    for (Lesson l : lessons) {
+        model.addRow(new Object[]{l.getLessonId(), l.getResource(), l.getTitle(), l.getContent()});
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,37 +50,18 @@ public class ManageLessons extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        Add = new javax.swing.JButton();
-        Edit = new javax.swing.JButton();
-        Delete = new javax.swing.JButton();
         Back = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        AddLesson = new javax.swing.JButton();
+        EditLesson = new javax.swing.JButton();
+        DeleteLesson = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 153, 255));
         jLabel1.setText("Manage Lessons");
-
-        Add.setText("Add lesson");
-        Add.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddActionPerformed(evt);
-            }
-        });
-
-        Edit.setText("Edit lesson");
-        Edit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditActionPerformed(evt);
-            }
-        });
-
-        Delete.setText("Delete lesson");
-        Delete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeleteActionPerformed(evt);
-            }
-        });
 
         Back.setText("Back");
         Back.addActionListener(new java.awt.event.ActionListener() {
@@ -67,59 +70,84 @@ public class ManageLessons extends javax.swing.JFrame {
             }
         });
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Lesson Id ", "Resource", "Title", "Content"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        AddLesson.setText("Add lesson");
+        AddLesson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddLessonActionPerformed(evt);
+            }
+        });
+
+        EditLesson.setText("Edit Lesson");
+        EditLesson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditLessonActionPerformed(evt);
+            }
+        });
+
+        DeleteLesson.setText("Delete Lesson");
+        DeleteLesson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteLessonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Edit, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(146, 146, 146)
-                .addComponent(jLabel1)
-                .addContainerGap(146, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(235, 235, 235)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(DeleteLesson)
+                                    .addComponent(EditLesson)
+                                    .addComponent(AddLesson))
+                                .addGap(13, 13, 13))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Add)
-                .addGap(18, 18, 18)
-                .addComponent(Edit)
-                .addGap(18, 18, 18)
-                .addComponent(Delete)
-                .addGap(18, 18, 18)
+                .addComponent(AddLesson)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(EditLesson)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(DeleteLesson)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(Back)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
-        AddLessons add = new AddLessons(instructor);
-        add.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_AddActionPerformed
-
-    private void EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditActionPerformed
-        EditLessons edit = new EditLessons(instructor);
-        edit.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_EditActionPerformed
-
-    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
-        DeleteLessons delete = new DeleteLessons(instructor);
-        delete.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_DeleteActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         InstructorDashBoard dash = new InstructorDashBoard(instructor);
@@ -127,15 +155,29 @@ public class ManageLessons extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_BackActionPerformed
 
+    private void EditLessonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditLessonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EditLessonActionPerformed
+
+    private void AddLessonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddLessonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddLessonActionPerformed
+
+    private void DeleteLessonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteLessonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteLessonActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Add;
+    private javax.swing.JButton AddLesson;
     private javax.swing.JButton Back;
-    private javax.swing.JButton Delete;
-    private javax.swing.JButton Edit;
+    private javax.swing.JButton DeleteLesson;
+    private javax.swing.JButton EditLesson;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
