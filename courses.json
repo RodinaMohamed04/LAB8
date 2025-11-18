@@ -1,44 +1,94 @@
 [
-  {
-    "courseId": "C1",
-    "courseName": "Java Basics",
-    "courseDescription": "Intro course",
-    "InstructorId": 2,
-    "students": [1],
-    "lessons": [
-      {
-        "lessonId": "L1",
-        "title": "Variables",
-        "content": "desc here",
-        "resources": []
-      },
-      {
-        "lessonId": "L2",
-        "title": "Loops",
-        "content": "desc here",
-        "resources": []
-      }
-    ]
-  },
-  {
-    "courseId": "C2",
-    "courseName": "OOP Basics",
-    "courseDescription": "Intro to Object-Oriented Programming",
-    "InstructorId": 2,
-    "students": [1],
-    "lessons": [
-      {
-        "lessonId": "L3",
-        "title": "Classes & Objects",
-        "content": "desc here",
-        "resources": []
-      },
-      {
-        "lessonId": "L4",
-        "title": "Inheritance",
-        "content": "desc here",
-        "resources": []
-      }
-    ]
-  }
+    {
+        "courseName": "Python Basics",
+        "students": [
+            1,
+            101,
+            102
+        ],
+        "InstructorId": 10,
+        "courseId": "PY101",
+        "courseDescription": "Intro to Python programming",
+        "lessons": [
+            {
+                "lessonId": "L1",
+                "resources": [],
+                "title": "Variables & Data Types",
+                "content": "Learn about Python variables and data types"
+            },
+            {
+                "lessonId": "L2",
+                "resources": [],
+                "title": "Control Flow",
+                "content": "If statements and loops in Python"
+            }
+        ]
+    },
+    {
+        "courseName": "Java Basics",
+        "students": [2],
+        "InstructorId": 10,
+        "courseId": "JAVA101",
+        "courseDescription": "Intro to Java programming",
+        "lessons": [
+            {
+                "lessonId": "L1",
+                "resources": [],
+                "title": "Variables",
+                "content": "Java variables and types"
+            },
+            {
+                "lessonId": "L2",
+                "resources": [],
+                "title": "Loops",
+                "content": "For, while loops in Java"
+            }
+        ]
+    },
+    {
+        "courseName": "JavaScript Basics",
+        "students": [1],
+        "InstructorId": 11,
+        "courseId": "JS101",
+        "courseDescription": "Intro to JavaScript programming",
+        "lessons": [
+            {
+                "lessonId": "L1",
+                "resources": [],
+                "title": "Variables & Operators",
+                "content": "JS variables and operators"
+            },
+            {
+                "lessonId": "L2",
+                "resources": [],
+                "title": "Functions",
+                "content": "JS functions explained"
+            }
+        ]
+    },
+    {
+        "courseName": "C++ Basics",
+        "students": [
+            1,
+            100,
+            101
+        ],
+        "InstructorId": 11,
+        "courseId": "CPP101",
+        "courseDescription": "Intro to C++ programming",
+        "lessons": [
+            {
+                "lessonId": "L1",
+                "resources": [],
+                "title": "Syntax & Variables",
+                "content": "Basic syntax and variables in C++"
+            },
+            {
+                "lessonId": "L2",
+                "resources": [],
+                "title": "Loops & Conditionals",
+                "content": "Control flow in C++"
+            }
+        ]
+    }
 ]

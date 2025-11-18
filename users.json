@@ -1,144 +1,184 @@
 [
     {
         "Role": "student",
-        "Email": "sara@example.com",
+        "Email": "alice@student.com",
         "enrolledCourses": [
-            "C1",
-            "C2"
+            "PY101",
+            "JS101"
         ],
         "progress": [
             {
                 "completedLessons": [],
-                "courseId": "C1"
+                "courseId": "PY101"
             },
             {
                 "completedLessons": [],
-                "courseId": "C2"
+                "courseId": "JS101"
             },
             {
                 "completedLessons": [],
-                "courseId": "C1"
+                "courseId": "PY101"
             },
             {
                 "completedLessons": [],
-                "courseId": "C2"
+                "courseId": "JS101"
             },
             {
                 "completedLessons": [],
-                "courseId": "C1"
+                "courseId": "PY101"
             },
             {
                 "completedLessons": [],
-                "courseId": "C2"
+                "courseId": "JS101"
             },
             {
                 "completedLessons": [],
-                "courseId": "C1"
+                "courseId": "PY101"
             },
             {
                 "completedLessons": [],
-                "courseId": "C2"
+                "courseId": "JS101"
             },
             {
                 "completedLessons": [],
-                "courseId": "C1"
+                "courseId": "PY101"
             },
             {
                 "completedLessons": [],
-                "courseId": "C2"
+                "courseId": "JS101"
+            },
+            {
+                "completedLessons": ["L1"],
+                "courseId": "PY101"
             },
             {
                 "completedLessons": [],
-                "courseId": "C1"
+                "courseId": "JS101"
+            }
+        ],
+        "ID": 1,
+        "Hash password": "123456abcdef",
+        "Name": "Alice"
+    },
+    {
+        "Role": "student",
+        "Email": "charlie@student.com",
+        "enrolledCourses": ["JAVA101"],
+        "progress": [
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
             },
             {
                 "completedLessons": [],
-                "courseId": "C2"
+                "courseId": "JAVA101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
             },
             {
                 "completedLessons": [
                     "L1",
                     "L2"
                 ],
-                "courseId": "C1"
+                "courseId": "JAVA101"
+            }
+        ],
+        "ID": 2,
+        "Hash password": "654321fedcba",
+        "Name": "Charlie"
+    },
+    {
+        "Role": "student",
+        "Email": "diana@student.com",
+        "enrolledCourses": [],
+        "progress": [],
+        "ID": 3,
+        "Hash password": "a1b2c3d4e5",
+        "Name": "Diana"
+    },
+    {
+        "Role": "instructor",
+        "Email": "bob@instructor.com",
+        "createdCourses": [
+            "PY101",
+            "JAVA101"
+        ],
+        "ID": 10,
+        "Hash password": "abcdef123456",
+        "Name": "Bob"
+    },
+    {
+        "Role": "instructor",
+        "Email": "eve@instructor.com",
+        "createdCourses": [
+            "JS101",
+            "CPP101"
+        ],
+        "ID": 11,
+        "Hash password": "123abc456def",
+        "Name": "Eve"
+    },
+    {
+        "Role": "student",
+        "Email": "rm2@gamil.com",
+        "enrolledCourses": [
+            "CPP101",
+            "PY101"
+        ],
+        "progress": [
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
             },
             {
                 "completedLessons": [],
-                "courseId": "C2"
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
             }
         ],
-        "ID": 1,
-        "Hash password": "aab9129faa",
-        "Name": "sara"
-    },
-    {
-        "Role": "instructor",
-        "Email": "ahmed@example.com",
-        "createdCourses": ["C1"],
-        "ID": 2,
-        "Hash password": "9921bbd22",
-        "Name": "ahmed"
+        "ID": 101,
+        "Hash password": "2c27ab2f38a396dcf02b2431681e60e73a70d1efe4e33764c44565c41621821c",
+        "Name": "rodina mohamed"
     },
     {
         "Role": "student",
-        "Email": "rody@gmail.com",
-        "enrolledCourses": [],
-        "progress": [],
-        "ID": 0,
-        "Hash password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-        "Name": "rodyahme"
-    },
-    {
-        "Role": "student",
-        "Email": "ty2@gamil.com",
-        "enrolledCourses": [],
-        "progress": [],
-        "ID": 0,
-        "Hash password": "da7cd7430dba69722136baadb2b04781d8bec6f49ad5cc214913d6372366e1ee",
-        "Name": "rodinamohamed"
-    },
-    {
-        "Role": "instructor",
-        "Email": "ty2@gamil.com",
-        "createdCourses": [],
-        "ID": 0,
-        "Hash password": "da7cd7430dba69722136baadb2b04781d8bec6f49ad5cc214913d6372366e1ee",
-        "Name": "rodinamohamed"
-    },
-    {
-        "Role": "student",
-        "Email": "hy@gmail.com",
-        "enrolledCourses": [],
-        "progress": [],
-        "ID": 0,
-        "Hash password": "5371e1a064f3cfff62decbc181fdfa0fe8e6fc078afad0e36e438a960d38a4e3",
-        "Name": "hhhhuuuu"
-    },
-    {
-        "Role": "student",
-        "Email": "ty@gmail.com",
-        "enrolledCourses": [],
-        "progress": [],
-        "ID": 100,
-        "Hash password": "058d5d43bf485bf78dda1ed4eaf8b78e3106f3c6364c625ead2cc3aeb1908237",
-        "Name": "ttttyyy"
-    },
-    {
-        "Role": "student",
-        "Email": "gj@gmail.com",
-        "enrolledCourses": [],
-        "progress": [],
-        "ID": 100,
-        "Hash password": "058d5d43bf485bf78dda1ed4eaf8b78e3106f3c6364c625ead2cc3aeb1908237",
-        "Name": "gg jj"
-    },
-    {
-        "Role": "student",
-        "Email": "sara11@gmail.com",
-        "enrolledCourses": [],
-        "progress": [],
-        "ID": 100,
-        "Hash password": "e11d8cb94b54e0a2fd0e780f93dd51837fd39bf0c9b86f21e760d02a8550ddf7",
-        "Name": "rod ahm"
+        "Email": "sr3@gmail.com",
+        "enrolledCourses": ["PY101"],
+        "progress": [{
+            "completedLessons": [],
+            "courseId": "PY101"
+        }],
+        "ID": 102,
+        "Hash password": "9320478d623949a8db92842ef954fbbd6775648c93e970b0f068a3ded7d0b808",
+        "Name": "sraa yas"
     }
 ]
