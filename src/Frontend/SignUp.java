@@ -222,42 +222,49 @@ public class SignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_InstructorActionPerformed
 
     private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
-        String email = Email.getText().trim();
-        String password = Password.getText().trim();
-        String fname = FirstName1.getText().trim();
-        String sname = SecondName.getText().trim();
-        String fullname = fname + " " + sname;
-        String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
-        if (email.isEmpty() || password.isEmpty() || fname.isEmpty() || sname.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please fill all fields!");
-        } else if (!Student.isSelected() && !Instructor.isSelected()) {
-            JOptionPane.showMessageDialog(this, "Please select Student or Instructor", "Input Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        } else if (!email.matches(emailRegex)) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid email address!", "Invalid email", JOptionPane.ERROR_MESSAGE);
-            return;
+         String email = Email.getText().trim();
+    String password = Password.getText().trim();
+    String fname = FirstName1.getText().trim();
+    String sname = SecondName.getText().trim();
+    String fullname = fname + " " + sname;
+    String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
 
-        }
-
-        try {
-            Student s = new Student(fullname, email, Backend.User.hashy(password));
-            userService.addUser(s);
-            if (Student.isSelected()) {
-                StudentDashBoard st = new StudentDashBoard(student);
-                st.setVisible(true);
-                this.setVisible(false);
-            } else if (Instructor.isSelected()) {
-                Instructor i = new Instructor(fullname, email, Backend.User.hashy(password));
-                userService.addUser(i);
-                InstructorDashBoard in = new InstructorDashBoard(instructor);
-                in.setVisible(true);
-                this.setVisible(false);
-            }
-        }
-            catch(Exception e){
-  JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    if (email.isEmpty() || password.isEmpty() || fname.isEmpty() || sname.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please fill all fields!");
+        return;
+    } 
+    if (!Student.isSelected() && !Instructor.isSelected()) {
+        JOptionPane.showMessageDialog(this, "Please select Student or Instructor");
+        return;
+    }
+    if (!email.matches(emailRegex)) {
+        JOptionPane.showMessageDialog(this, "Please enter a valid email!");
+        return;
     }
 
+    try {
+
+        if (Student.isSelected()) {
+            Student s = new Student(fullname, email, Backend.User.hashy(password));
+            userService.addUser(s);
+
+            StudentDashBoard st = new StudentDashBoard(s);
+            st.setVisible(true);
+            this.setVisible(false);
+
+        } else if (Instructor.isSelected()) {
+
+            Instructor i = new Instructor(fullname, email, Backend.User.hashy(password));
+            userService.addUser(i);
+
+            InstructorDashBoard in = new InstructorDashBoard(i);
+            in.setVisible(true);
+            this.setVisible(false);
+        }
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    }
     }//GEN-LAST:event_OKActionPerformed
 
     /**

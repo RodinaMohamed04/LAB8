@@ -15,7 +15,7 @@ private Student student;
     /**
      * Creates new form ViewLessons
      */
-    public ViewLessons(Student student) {
+    public ViewLessons(Student student, String courseId) {
         
         initComponents();
          this.setLocationRelativeTo(null);

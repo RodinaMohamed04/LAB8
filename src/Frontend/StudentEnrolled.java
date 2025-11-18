@@ -41,6 +41,7 @@ public class StudentEnrolled extends javax.swing.JFrame {
     }
 
     private void loadCourses() {
+         ArrayList<String> courses = userService.displayEnrolledCourses(student.getUserId());
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new String[]{"Course Id", "Course Name", "Progress", "Availability", "Action"});
         jTable1.setModel(model);
@@ -72,7 +73,6 @@ public class StudentEnrolled extends javax.swing.JFrame {
             model.addRow(new Object[]{"C101", "Java Basics", "50%", "Available", "View Lessons"});
             model.addRow(new Object[]{"C205", "OOP", "30%", "Available", "View Lessons"});
         }*/
-      ArrayList<String> courses = userService.displayEnrolledCourses(student.getUserId());
     for (String cId : courses) {
     Course course = courseService.getCourseById(cId);
     if (course != null) {
@@ -94,8 +94,9 @@ public class StudentEnrolled extends javax.swing.JFrame {
                 int col = jTable1.columnAtPoint(evt.getPoint());
 
                 if (col == 4) {
+                   String courseId = (String) jTable1.getValueAt(row, 0);
                     String courseName = (String) jTable1.getValueAt(row, 1);
-                    ViewLessons vl = new ViewLessons(student);
+                    ViewLessons vl = new ViewLessons(student, courseId);
                     vl.setTitle("Lessons for: " + courseName);
                     vl.setVisible(true);
                     StudentEnrolled.this.setVisible(false);

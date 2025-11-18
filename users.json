@@ -48,6 +48,14 @@
                 "courseId": "C2"
             },
             {
+                "completedLessons": [],
+                "courseId": "C1"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "C2"
+            },
+            {
                 "completedLessons": [
                     "L1",
                     "L2"
@@ -123,5 +131,14 @@
         "ID": 100,
         "Hash password": "058d5d43bf485bf78dda1ed4eaf8b78e3106f3c6364c625ead2cc3aeb1908237",
         "Name": "gg jj"
+    },
+    {
+        "Role": "student",
+        "Email": "sara11@gmail.com",
+        "enrolledCourses": [],
+        "progress": [],
+        "ID": 100,
+        "Hash password": "e11d8cb94b54e0a2fd0e780f93dd51837fd39bf0c9b86f21e760d02a8550ddf7",
+        "Name": "rod ahm"
     }
 ]
