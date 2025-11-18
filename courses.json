@@ -1,0 +1,44 @@
+[
+  {
+    "courseId": "C1",
+    "courseName": "Java Basics",
+    "courseDescription": "Intro course",
+    "InstructorId": 2,
+    "students": [1],
+    "lessons": [
+      {
+        "lessonId": "L1",
+        "title": "Variables",
+        "content": "desc here",
+        "resources": []
+      },
+      {
+        "lessonId": "L2",
+        "title": "Loops",
+        "content": "desc here",
+        "resources": []
+      }
+    ]
+  },
+  {
+    "courseId": "C2",
+    "courseName": "OOP Basics",
+    "courseDescription": "Intro to Object-Oriented Programming",
+    "InstructorId": 2,
+    "students": [1],
+    "lessons": [
+      {
+        "lessonId": "L3",
+        "title": "Classes & Objects",
+        "content": "desc here",
+        "resources": []
+      },
+      {
+        "lessonId": "L4",
+        "title": "Inheritance",
+        "content": "desc here",
+        "resources": []
+      }
+    ]
+  }
+]
