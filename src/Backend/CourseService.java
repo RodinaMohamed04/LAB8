@@ -86,6 +86,24 @@ public class CourseService {
             saveCourses();
         }
     }
+    public void updateLesson(String courseId, String oldLessonId, String newLessonId, String newTitle, String newContent, ArrayList<String> newResources) {
+    Course c = getCourseById(courseId);
+    if (c != null) {
+        for (Lesson l : c.getLessons()) {
+            if (l.getLessonId().equals(oldLessonId)) {
+                l.setLessonId(newLessonId);
+                l.setTitle(newTitle);
+                l.setContent(newContent);
+                l.getResources().clear();
+                if (newResources != null) {
+                    l.getResources().addAll(newResources); 
+                }
+                saveCourses();
+                break;
+            }
+        }
+    }
+}
     public void addStudentToCourse(String courseId, Student student) {
         Course c = getCourseById(courseId);
         if (c != null && !c.getStudents().contains(student)) {

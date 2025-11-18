@@ -4,18 +4,74 @@
  */
 package Frontend;
 
-/**
- *
- * @author Rodina Mohamed
- */
+import Backend.Course;
+import Backend.CourseService;
+import Backend.Instructor;
+import Backend.Lesson;
+import Frontend.ManageLessons;
+import javax.swing.JOptionPane;
+
+
 public class EditLesson extends javax.swing.JFrame {
+    private Instructor instructor;
+    private Course course;
+    private Lesson lesson;
+    private CourseService courseService;
+    
 
     /**
      * Creates new form EditLesson
      */
-    public EditLesson() {
+    public EditLesson(Instructor instructor, Course course, Lesson lesson) {
+        this.instructor = instructor;
+        this.course = course;
+        this.lesson = lesson;
+        this.courseService = new CourseService();
         initComponents();
+        loadLessonData();
+        setLocationRelativeTo(null);
+
     }
+    private void loadLessonData() {
+        jTextField1.setText(lesson.getLessonId());
+        jTextField2.setText(lesson.getTitle());
+       // jTextField3.setText(String.join(","lesson.getResources()));
+        jTextField4.setText(lesson.getContent());
+if (lesson.getResources() != null && !lesson.getResources().isEmpty()) {
+    jTextField3.setText(String.join(",", lesson.getResources()));
+} else {
+    jTextField3.setText("");
+}
+    
+    }
+    private void saveChanges() {
+        String newId = jTextField1.getText().trim();
+        String newName = jTextField2.getText().trim();
+        String newContent = jTextField4.getText().trim();
+        String newResources = jTextField3.getText().trim();
+
+        if (newId.isEmpty() || newName.isEmpty()|| newContent.isEmpty()|| newResources.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill All fields!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+  courseService.removeLessonFromCourse(course.getCourseId(),lesson.getLessonId());
+
+    
+    lesson.setLessonId(newId);
+    lesson.setTitle(newName);
+    lesson.setContent(newContent);
+
+    
+    courseService.addCourse(course);
+JOptionPane.showMessageDialog(this, "Lesson updated successfully!");
+        goBack();
+}
+
+
+        
+    
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -180,36 +236,36 @@ public class EditLesson extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+     */
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditLesson.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditLesson.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditLesson.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditLesson.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EditLesson().setVisible(true);
-            }
-        });
+    } catch (ClassNotFoundException ex) {
+        java.util.logging.Logger.getLogger(EditLesson.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+        java.util.logging.Logger.getLogger(EditLesson.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+        java.util.logging.Logger.getLogger(EditLesson.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(EditLesson.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            //new EditLesson().setVisible(true);
+        }
+    });
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -224,4 +280,9 @@ public class EditLesson extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
+ private void goBack() {
+        ManageLessons ml = new ManageLessons(instructor, course);
+        ml.setVisible(true);
+        this.dispose();
+    }
 }
