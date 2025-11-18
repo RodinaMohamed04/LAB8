@@ -29,6 +29,7 @@ public class CourseService {
     public ArrayList<Course> getAllCourses() {
         return courses;
     }
+    
     public void removeCourse(String courseId) {
         Course c = getCourseById(courseId);
         if (c != null) {

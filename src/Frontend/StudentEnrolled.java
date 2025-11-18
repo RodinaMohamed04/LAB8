@@ -43,52 +43,24 @@ public class StudentEnrolled extends javax.swing.JFrame {
     private void loadCourses() {
          ArrayList<String> courses = userService.displayEnrolledCourses(student.getUserId());
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[]{"Course Id", "Course Name", "Progress", "Availability", "Action"});
+        model.setColumnIdentifiers(new String[]{"Course Id", "Course Name", "Progress"});
         jTable1.setModel(model);
 
-      /* try {
-          
-            BufferedReader reader = new BufferedReader(new FileReader("courses.json"));
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                sb.append(line);
-            }
-            reader.close();
-
-            JSONArray courses = new JSONArray(sb.toString());
-
-            for (int i = 0; i < courses.length(); i++) {
-                JSONObject course = courses.getJSONObject(i);
-                String id = course.getString("courseId");
-                String name = course.getString("title");
-                String progress = course.has("progress") ? course.getString("progress") : "0%";
-                String avail = "Available";
-
-                model.addRow(new Object[]{id, name, progress, avail, "View Lessons"});
-            }
-
-        } catch (Exception e) {
-          //dummy data
-            model.addRow(new Object[]{"C101", "Java Basics", "50%", "Available", "View Lessons"});
-            model.addRow(new Object[]{"C205", "OOP", "30%", "Available", "View Lessons"});
-        }*/
+      
     for (String cId : courses) {
     Course course = courseService.getCourseById(cId);
     if (course != null) {
                 model.addRow(new Object[]{
                     course.getCourseId(),
                     course.getCourseName(),
-                    "0%",              
-                    "Available",
-                    "View Lessons"
+                    "0%"
                 });
             }
         }
 
         jTable1.setModel(model);
         
-        jTable1.addMouseListener(new MouseAdapter() {
+        /*jTable1.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 int row = jTable1.rowAtPoint(evt.getPoint());
                 int col = jTable1.columnAtPoint(evt.getPoint());
@@ -102,8 +74,25 @@ public class StudentEnrolled extends javax.swing.JFrame {
                     StudentEnrolled.this.setVisible(false);
                 }
             }
-        });
+        });*/
     }
+    
+    private void openSelectedCourseLessons() {
+    int selectedRow = jTable1.getSelectedRow();
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Select a course!");
+        return;
+    }
+
+    String courseId = jTable1.getValueAt(selectedRow, 0).toString();
+    String courseName = jTable1.getValueAt(selectedRow, 1).toString();
+
+    ViewLessons vl = new ViewLessons(student, courseId);
+    vl.setTitle("Lessons for: " + courseName);
+    vl.setVisible(true);
+    this.setVisible(false);
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -118,6 +107,7 @@ public class StudentEnrolled extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        ViewLessons = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,13 +116,13 @@ public class StudentEnrolled extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Course Id", "Course Name", "Progress", "Availability", "Action"
+                "Course Id", "Course Name", "Progress"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -145,6 +135,13 @@ public class StudentEnrolled extends javax.swing.JFrame {
             }
         });
 
+        ViewLessons.setText("View Lessons");
+        ViewLessons.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewLessonsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -152,24 +149,27 @@ public class StudentEnrolled extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(307, 307, 307)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(229, 229, 229)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ViewLessons))))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ViewLessons)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         pack();
@@ -182,6 +182,11 @@ public class StudentEnrolled extends javax.swing.JFrame {
       sb.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ViewLessonsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewLessonsActionPerformed
+        // TODO add your handling code here:
+        openSelectedCourseLessons();
+    }//GEN-LAST:event_ViewLessonsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,6 +224,7 @@ public class StudentEnrolled extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ViewLessons;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
