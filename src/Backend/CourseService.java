@@ -29,13 +29,22 @@ public class CourseService {
     public ArrayList<Course> getAllCourses() {
         return courses;
     }
-    public void removeCourse(String courseId) {
+    public boolean removeCourse(String courseId) {
+    Course c = getCourseById(courseId);
+    if (c != null) {
+        courses.remove(c);
+        saveCourses();
+        return true;
+    }
+    return false;
+}
+    /*public void removeCourse(String courseId) {
         Course c = getCourseById(courseId);
         if (c != null) {
             courses.remove(c);
             saveCourses();
         }
-    }
+    }*/
    /* public void updateCourse(String courseId, String name, String description) {
         Course c = getCourseById(courseId);
         if (c != null) {
