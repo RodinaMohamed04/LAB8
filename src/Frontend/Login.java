@@ -30,28 +30,16 @@ public class Login extends javax.swing.JFrame {
         group.add(Instructor);
     }
 
-   private User validateLogin(String email, String password, String role) {
+    private User validateLogin(String email, String password, String role) {
+        for (User u : userService.getAllUsers()) {
 
-    for (User u : userService.getAllUsers()) {
+            if (u.getEmail().equalsIgnoreCase(email)
+                    && u.getPasswordHash().equals(password)
+                    && u.getRole().equalsIgnoreCase(role)) {
 
-        if (u.getEmail().equalsIgnoreCase(email)
-                && u.getRole().equalsIgnoreCase(role)) {
-
-            try {
-                // hash the entered password
-                String hashedInput = User.hashy(password);
-
-                // compare hashed input with saved hash
-                if (hashedInput.equals(u.getPasswordHash())) {
-                    return u; // success
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
+                return u; // login successful
             }
         }
-    }
 
         return null; // login failed
     }

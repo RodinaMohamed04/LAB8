@@ -46,27 +46,6 @@
         ]
     },
     {
-        "courseName": "JavaScript Basics",
-        "students": [1],
-        "InstructorId": 11,
-        "courseId": "JS101",
-        "courseDescription": "Intro to JavaScript programming",
-        "lessons": [
-            {
-                "lessonId": "L1",
-                "resources": [],
-                "title": "Variables & Operators",
-                "content": "JS variables and operators"
-            },
-            {
-                "lessonId": "L2",
-                "resources": [],
-                "title": "Functions",
-                "content": "JS functions explained"
-            }
-        ]
-    },
-    {
         "courseName": "C++ Basics",
         "students": [
             1,
