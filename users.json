@@ -56,6 +56,14 @@
                 "courseId": "JS101"
             },
             {
+                "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "JS101"
+            },
+            {
                 "completedLessons": ["L1"],
                 "courseId": "PY101"
             },
@@ -73,6 +81,10 @@
         "Email": "charlie@student.com",
         "enrolledCourses": ["JAVA101"],
         "progress": [
+            {
+                "completedLessons": [],
+                "courseId": "JAVA101"
+            },
             {
                 "completedLessons": [],
                 "courseId": "JAVA101"
@@ -178,6 +190,14 @@
             },
             {
                 "completedLessons": [],
+                "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "CPP101"
+            },
+            {
+                "completedLessons": [],
                 "courseId": "CPP101"
             },
             {
@@ -201,6 +221,10 @@
             {
                 "completedLessons": [],
                 "courseId": "PY101"
+            },
+            {
+                "completedLessons": [],
+                "courseId": "PY101"
             }
         ],
         "ID": 102,
@@ -214,5 +238,14 @@
         "ID": 100,
         "Hash password": "096632895e4372a6c49075c50dd14e34f1ed899f8ed5418d2b9b7ca992f04c8c",
         "Name": "rodina ahmed"
+    },
+    {
+        "Role": "student",
+        "Email": "rb3@gmail.com",
+        "enrolledCourses": [],
+        "progress": [],
+        "ID": 100,
+        "Hash password": "9b4db0c2b320e010709d560ce343aa219205ece4f2bc4fe204098990c4278a91",
+        "Name": "rody bb"
     }
 ]

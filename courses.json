@@ -50,7 +50,8 @@
         "students": [
             1,
             100,
-            101
+            101,
+            100
         ],
         "InstructorId": 11,
         "courseId": "CPP101",

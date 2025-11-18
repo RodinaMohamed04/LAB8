@@ -30,19 +30,31 @@ public class Login extends javax.swing.JFrame {
         group.add(Instructor);
     }
 
-    private User validateLogin(String email, String password, String role) {
-        for (User u : userService.getAllUsers()) {
+   private User validateLogin(String email, String password, String role) {
 
-            if (u.getEmail().equalsIgnoreCase(email)
-                    && u.getPasswordHash().equals(password)
-                    && u.getRole().equalsIgnoreCase(role)) {
+    for (User u : userService.getAllUsers()) {
 
-                return u; // login successful
+        if (u.getEmail().equalsIgnoreCase(email)
+                && u.getRole().equalsIgnoreCase(role)) {
+
+            try {
+                // hash the entered password
+                String hashedInput = User.hashy(password);
+
+                // compare hashed input with saved hash
+                if (hashedInput.equals(u.getPasswordHash())) {
+                    return u; // success
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
             }
         }
-
-        return null; // login failed
     }
+
+    return null; // login failed
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
