@@ -43,7 +43,7 @@ public class BrowseCourses extends javax.swing.JFrame {
 
         String courseId = jTable1.getValueAt(selectedRow, 0).toString();
        
-        if (student.getEnrolledCourses().contains(courseId)) {
+        /*f (student.getEnrolledCourses().contains(courseId)) {
             JOptionPane.showMessageDialog(this, "You are already enrolled in this course.");
             return;
         }
@@ -58,7 +58,7 @@ public class BrowseCourses extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(this, "Enrolled successfully in course: " + courseId);
 
- 
+ */
         loadCourses();
     }
 

@@ -2,10 +2,8 @@
     {
         "courseName": "Python Basics",
         "students": [
-            1,
-            101,
-            102,
-            103
+            100,
+            101
         ],
         "InstructorId": 10,
         "courseId": "PY101",
@@ -27,12 +25,7 @@
     },
     {
         "courseName": "Java Basics",
-        "students": [
-            2,
-            101,
-            100,
-            102
-        ],
+        "students": [100],
         "InstructorId": 10,
         "courseId": "JAVA101",
         "courseDescription": "Intro to Java programming",
@@ -54,11 +47,8 @@
     {
         "courseName": "C++ Basics",
         "students": [
-            1,
             100,
-            101,
-            102,
-            103
+            101
         ],
         "InstructorId": 11,
         "courseId": "CPP101",
@@ -75,6 +65,27 @@
                 "resources": [],
                 "title": "Loops & Conditionals",
                 "content": "Control flow in C++"
+            }
+        ]
+    },
+    {
+        "courseName": "maths",
+        "students": [],
+        "InstructorId": 100,
+        "courseId": "559",
+        "courseDescription": "noo",
+        "lessons": [
+            {
+                "lessonId": "kkj",
+                "resources": [],
+                "title": "tyt",
+                "content": "nn"
+            },
+            {
+                "lessonId": "AD",
+                "resources": [],
+                "title": "rr",
+                "content": "yh7"
             }
         ]
     }

@@ -6,8 +6,8 @@ public class CourseService {
         courses = JasonDataBaseManager.readCourse();
     }
     private void saveCourses() {
-        JasonDataBaseManager.saveCourse(courses);
         if (courses == null) courses = new ArrayList<>();
+        JasonDataBaseManager.saveCourse(courses);
     }
     
     private void saveChanges(){
@@ -136,6 +136,17 @@ public class CourseService {
         return new ArrayList<>(); 
     }
 }
+    public Lesson getLessonById(String courseId, String lessonId) {
+        Course c = getCourseById(courseId);
+        if (c != null) {
+            for (Lesson l : c.getLessons()) {
+                if (l.getLessonId().equals(lessonId)) {
+                    return l;
+                }
+            }
+        }
+        return null;
+    }
 
    
 }

@@ -7,7 +7,7 @@ public class Lesson {
     private String lessonId;
     private String title;
     private String content;
-    private List<String> resources = new ArrayList<>();
+    private ArrayList<String> resources = new ArrayList<>();
 
     public Lesson(String lessonId, String title, String content) {
         this.lessonId = lessonId;
@@ -23,16 +23,20 @@ public class Lesson {
     public void setTitle(String title) { this.title = title; }
     public void setContent(String content) { this.content = content; }
 
-    public List<String> getResources() {
+    public ArrayList<String> getResources() {
         return resources; }
+     public void setResources(ArrayList<String> resources) {
+        this.resources = resources;
+    }
 
     public void addResource(String resource) {
         resources.add(resource);
     }
 
-    public Object getResource() {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
+    //public Object getResource() {
+        // new UnsupportedOperationException("Not supported yet."); // Generated from 
+    //}
+
 
 }
 

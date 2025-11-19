@@ -9,6 +9,7 @@ import Backend.CourseService;
 import Backend.Instructor;
 import Backend.Lesson;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ManageLessons extends javax.swing.JFrame {
@@ -16,7 +17,7 @@ public class ManageLessons extends javax.swing.JFrame {
     private CourseService cs;
     private String courseId;
     private Course course;
-
+    private Lesson lesson;
     /**
      * Creates new form ManageLessons
      */
@@ -25,10 +26,10 @@ public class ManageLessons extends javax.swing.JFrame {
         this.instructor=instructor;
         this.course = course;
         cs = new CourseService();
-        this.setLocationRelativeTo(null); 
+        
         initComponents();
         loadLessons();
-        
+        this.setLocationRelativeTo(null); 
     }
      private void loadLessons() {
     ArrayList<Lesson> lessons = cs.displayLessons(course.getCourseId());
@@ -36,9 +37,23 @@ public class ManageLessons extends javax.swing.JFrame {
     model.setRowCount(0);
 
     for (Lesson l : lessons) {
-        model.addRow(new Object[]{l.getLessonId(), l.getResource(), l.getTitle(), l.getContent()});
+        String res = String.join(", ", l.getResources());
+        model.addRow(new Object[]{l.getLessonId(), l.getResources(), l.getTitle(), l.getContent()});
     }
 }
+     /*private void editSelectedLesson(){
+    int selectedRow = jTable1.getSelectedRow();
+    if (selectedRow==-1){
+    JOptionPane.showMessageDialog(this, "Please select a row first");
+    return;
+    }
+   
+    String LessonId = jTable1.getValueAt(selectedRow,0).toString();
+        
+    EditLesson ec = new EditLesson(instructor,course,lesson);
+    ec.setVisible(true);
+    this.setVisible(false);
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,9 +68,9 @@ public class ManageLessons extends javax.swing.JFrame {
         Back = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        AddLesson = new javax.swing.JButton();
         EditLesson = new javax.swing.JButton();
         DeleteLesson = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,13 +98,6 @@ public class ManageLessons extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        AddLesson.setText("Add lesson");
-        AddLesson.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddLessonActionPerformed(evt);
-            }
-        });
-
         EditLesson.setText("Edit Lesson");
         EditLesson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +112,13 @@ public class ManageLessons extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Add Lesson");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,18 +129,17 @@ public class ManageLessons extends javax.swing.JFrame {
                         .addGap(235, 235, 235)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(DeleteLesson)
-                                    .addComponent(EditLesson)
-                                    .addComponent(AddLesson))
-                                .addGap(13, 13, 13))))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(54, 54, 54)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DeleteLesson)
+                            .addComponent(EditLesson)
+                            .addComponent(jButton1))))
                 .addContainerGap(228, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -136,14 +150,14 @@ public class ManageLessons extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(AddLesson)
+                .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(EditLesson)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(DeleteLesson)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Back)
-                .addContainerGap())
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -157,25 +171,59 @@ public class ManageLessons extends javax.swing.JFrame {
 
     private void EditLessonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditLessonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_EditLessonActionPerformed
+        //editSelectedLesson();
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a lesson to edit!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    private void AddLessonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddLessonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddLessonActionPerformed
+        String lessonId = jTable1.getValueAt(selectedRow, 0).toString();
+        Lesson selectedLesson = cs.getLessonById(course.getCourseId(), lessonId);
+
+        if (selectedLesson != null) {
+            EditLesson editFrame = new EditLesson(instructor, course, selectedLesson);
+            editFrame.setVisible(true);
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "Lesson not found!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_EditLessonActionPerformed
 
     private void DeleteLessonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteLessonActionPerformed
         // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a lesson to delete!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String lessonId = jTable1.getValueAt(selectedRow, 0).toString();
+
+        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this lesson?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            cs.removeLessonFromCourse(course.getCourseId(), lessonId);
+            JOptionPane.showMessageDialog(this, "Lesson deleted successfully!");
+            loadLessons();
+        }
     }//GEN-LAST:event_DeleteLessonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here
+            AddLesson addLessonFrame = new AddLesson(course.getCourseId());
+            addLessonFrame.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddLesson;
     private javax.swing.JButton Back;
     private javax.swing.JButton DeleteLesson;
     private javax.swing.JButton EditLesson;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
