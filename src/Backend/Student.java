@@ -26,32 +26,71 @@ public class Student extends User {
 
     // Add full progress (used by JSON loader)
     public void addProgress(String courseId, ArrayList<String> completedLessons) {
-        
-     
-        
+
         StudentCourseProgress p = new StudentCourseProgress(courseId);
-        p.completedLessons = completedLessons;
+        p.setCompletedLessons(completedLessons);
         coursesProgress.add(p);
     }
 
     // Mark lesson as completed
-    public void addLessonCompleted(String courseId, String lessonId) {
+   /* public void addLessonCompleted(String courseId, String lessonId) {
         for (StudentCourseProgress p : coursesProgress) {
-            if (p.courseId.equals(courseId) && !p.completedLessons.contains(lessonId)) {
-                p.completedLessons.add(lessonId);
+            if (p.getCourseId().equals(courseId) && !p.getCompletedLessons().contains(lessonId)) {
+                p.getCompletedLessons().add(lessonId);
                 break;
             }
         }
+    }*/
+
+    public void addLessonCompleted(String courseId, String lessonId) {
+
+        StudentCourseProgress target = null;
+        for (StudentCourseProgress p : coursesProgress) {
+            if (p.getCourseId().equals(courseId)) {
+                target = p;
+                break;
+            }
+        }
+
+
+        if (target == null) {
+            target = new StudentCourseProgress(courseId);
+            coursesProgress.add(target);
+        }
+
+        if (!target.getCompletedLessons().contains(lessonId)) {
+            target.getCompletedLessons().add(lessonId);
+        }
     }
-    
-     public boolean isLessonCompleted(String courseId, String lessonId) {
+
+
+    public boolean isLessonCompleted(String courseId, String lessonId) {
     for (StudentCourseProgress p : coursesProgress) {
-        if (p.courseId.equals(courseId) && p.completedLessons.contains(lessonId)) {
+        if (p.getCourseId().equals(courseId) && p.getCompletedLessons().contains(lessonId)) {
             return true;
         }
     }
     return false;
 }
+
+   /* public int getProgressPercentage(String courseId, int totalLessons) {
+        for (StudentCourseProgress p : coursesProgress) {
+            if (p.getCourseId().equals(courseId)) {
+                if (totalLessons == 0) return 0;
+                return (p.getCompletedLessons().size() * 100 / totalLessons);
+            }
+        }
+        return 0;
+    }*/
+   public int getProgressPercentage(String courseId, int totalLessons) {
+       if (totalLessons == 0) return 0;
+       for (StudentCourseProgress p : coursesProgress) {
+           if (p.getCourseId().equals(courseId)) {
+               return (p.getCompletedLessons().size() * 100 / totalLessons);
+           }
+       }
+       return 0;
+   }
 
     public ArrayList<String> getEnrolledCourses() {
         return enrolledCourses;

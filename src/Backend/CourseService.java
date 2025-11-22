@@ -2,7 +2,9 @@ package Backend;
 import java.util.ArrayList;
 public class CourseService {
     private ArrayList<Course> courses;
+    private UserService userService;
     public CourseService() {
+        userService = new UserService();
         courses = JsonDataBaseManager.readCourse();
     }
     private void saveCourses() {
@@ -31,15 +33,6 @@ public class CourseService {
         return courses;
     }
 
-   /* public boolean removeCourse(String courseId) {
-    Course c = getCourseById(courseId);
-    if (c != null) {
-        courses.remove(c);
-        saveCourses();
-        return true;
-    }
-    return false;
-}*/
     public boolean removeCourse(String courseId) {
         Course c = getCourseById(courseId);
         if (c != null) {
@@ -62,10 +55,6 @@ public class CourseService {
                 if (u instanceof Student st) {
                     st.getEnrolledCourses().remove(courseId);
 
-
-                    /*if (st.getCompletedLessonsMap().containsKey(courseId)) {
-                        st.getCompletedLessonsMap().remove(courseId);
-                    }*/
                 }
 
             }
@@ -75,21 +64,6 @@ public class CourseService {
         return false;
     }
 
-    /*public void removeCourse(String courseId) {
-        Course c = getCourseById(courseId);
-        if (c != null) {
-            courses.remove(c);
-            saveCourses();
-        }
-    }*/
-   /* public void updateCourse(String courseId, String name, String description) {
-        Course c = getCourseById(courseId);
-        if (c != null) {
-            c.setCourseName(name);
-            c.setCourseDescription(description);
-            saveCourses();
-        }
-    }*/
     public void updateCourse(String oldCourseId, String newName, String newCourseId) {
     Course c = getCourseById(oldCourseId);
     if (c != null) {
@@ -120,6 +94,7 @@ public class CourseService {
         Course c = getCourseById(courseId);
         if (c != null) {
             c.getLessons().removeIf(l -> l.getLessonId().equals(lessonId));
+            userService.removeLessonFromAllStudents(courseId, lessonId);
             saveCourses();
         }
     }
@@ -135,6 +110,22 @@ public class CourseService {
                 if (newResources != null) {
                     l.getResources().addAll(newResources); 
                 }
+
+                for (User u : userService.getAllUsers()) {
+                    if (u instanceof Student s) {
+                        for (StudentCourseProgress p : s.getCoursesProgress()) {
+                            if (p.getCourseId().equals(courseId)) {
+                                ArrayList<String> lessons = p.getCompletedLessons();
+                                for (int i = 0; i < lessons.size(); i++) {
+                                    if (lessons.get(i).equals(oldLessonId)) {
+                                        lessons.set(i, newLessonId);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                userService.saveUsers();
                 saveCourses();
                 break;
             }

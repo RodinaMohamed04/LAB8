@@ -1,11 +1,8 @@
 
 package Frontend;
 
-import Backend.Course;
-import Backend.CourseService;
-import Backend.Lesson;
-import Backend.Student;
-import Backend.StudentCourseProgress;
+import Backend.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -22,6 +19,7 @@ public class ViewLessons extends javax.swing.JFrame {
     private Course course;
     private CourseService courseService;
     private String courseId;
+
     //  private StudentCourseProgress studentCourseProgress;
     ;
 
@@ -50,19 +48,6 @@ public class ViewLessons extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
 
-
-        /*CourseService cs = new CourseService();
-        ArrayList<Lesson> lessons = cs.displayLessons(course.getCourseId());
-
-        for (Lesson lesson : lessons) {
-            boolean completed = student.isLessonCompleted(course.getCourseId(), lesson.getLessonId());
-            Object[] row = { lesson.getLessonId(), lesson.getTitle(), completed ? "Yes" : "No" };
-            model.addRow(row);
-        }
-        DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[]{"Lesson Id", "Lesson Name"});
-
-         */
         ArrayList<Lesson> lessons =courseService.displayLessons(course.getCourseId());
         for(Lesson lesson : lessons){
             boolean completed = student.isLessonCompleted(course.getCourseId(),lesson.getLessonId());
@@ -74,39 +59,8 @@ public class ViewLessons extends javax.swing.JFrame {
         }
         jTable1.setModel(model);
 
-        //for (Course c : courseService.getAllCourses())
-         /*for(int i=0;i<lessons.size();i++){
-             Lesson l2=lessons.get(i);
-             boolean completed = false;
-    for (StudentCourseProgress p : student.getCoursesProgress()) {
-        if (p.courseId.equals(course.getCourseId())) {
-            completed = p.completedLessons.contains(lesson.getLessonId());
-            break;
-        }
-         model.addRow(new Object []{l2.getLessonId(),l2.getTitle(),completed ? "Yes" : "No" });
-         }
-         jTable1.setModel(model);*/
     }
 
-    /*private void loadLessons() {
-        // For demo purposes, assume Course has getLessons() returning ArrayList<String> lesson titles
-        Course course = courseService.getCourseById(courseId);
-        if(course == null) {
-            JOptionPane.showMessageDialog(this, "Course not found!");
-            return;
-        }
-
-        ArrayList<Lesson> lessons = course.getLessons(); // replace with your actual lessons method
-        DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[]{"Lesson Id", "Lesson Title", "Completed"});
-
-        int id = 1;
-        for(Lesson title : lessons) {
-            model.addRow(new Object[]{id++, title, "No"}); // you can add actual completion status if you have
-        }
-
-        jTable1.setModel(model);
-    }*/
 
 
 
@@ -213,10 +167,11 @@ public class ViewLessons extends javax.swing.JFrame {
         }
 
         String lessonId = jTable1.getValueAt(selectedRow, 0).toString();
-        student.addLessonCompleted(course.getCourseId(), lessonId);
+     //   student.addLessonCompleted(course.getCourseId(), lessonId);
+        UserService userService = new UserService();
+        userService.markLessonCompleted(student.getUserId(), course.getCourseId(), lessonId);
+        student = (Student) userService.getUserbyID(student.getUserId());
         loadLessons();
-        //  UserService.updateUser(student);
-
         JOptionPane.showMessageDialog(this, "Lesson marked as completed!");
     }//GEN-LAST:event_markCompletedBtnActionPerformed
 

@@ -32,29 +32,7 @@ public class ViewStudentsInCourse extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-  /*  private void loadStudentsInCourse() {
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-
-        Course course = courseService.getCourseById(courseId);
-        if (course == null) {
-            JOptionPane.showMessageDialog(this, "Course not found!");
-            return;
-        }
-
-        ArrayList<Student> students = course.getStudents();
-
-        for (Student s : students) {
-            if (s != null) {
-                model.addRow(new Object[]{
-                        s.getUserId(),
-                        s.getUserName(),
-                        "0%"
-                });
-            }
-        }
-    }*/
-  private void loadStudentsInCourse() {
+  /*private void loadStudentsInCourse() {
       DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
       model.setRowCount(0);
 
@@ -66,18 +44,58 @@ public class ViewStudentsInCourse extends javax.swing.JFrame {
       // studentsList
       for (Student s : course.getStudents()) {
           if (s != null) {
-
               Student realStudent = (Student) us.getUserbyID(s.getUserId());
               if (realStudent != null) {
+
+
+                  int totalLessons = course.getLessons().size();
+                  int completed = 0;
+                  for (StudentCourseProgress p : realStudent.getCoursesProgress()) {
+                      if (p.getCourseId().equals(courseId)) {
+                          completed = p.getCompletedLessons().size();
+                          break;
+                      }
+                  }
+                  String progressPercent = totalLessons == 0 ? "0%" :
+                          (completed * 100 / totalLessons) + "%";
+
                   model.addRow(new Object[]{
                           realStudent.getUserId(),
                           realStudent.getUserName(),
-                          "0%"
+                          progressPercent
                   });
               }
           }
       }
-  }
+  }*/
+
+    private void loadStudentsInCourse() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        Course course = courseService.getCourseById(courseId);
+        if (course == null) return;
+
+        UserService us = new UserService();
+
+        for (Student s : course.getStudents()) {
+            if (s != null) {
+                Student realStudent = (Student) us.getUserbyID(s.getUserId());
+                if (realStudent != null) {
+                    int totalLessons = course.getLessons().size();
+                    int progress = realStudent.getProgressPercentage(courseId, totalLessons);
+                    String progressStr = progress + "%";
+
+                    model.addRow(new Object[]{
+                            realStudent.getUserId(),
+                            realStudent.getUserName(),
+                            progressStr
+                    });
+                }
+            }
+        }
+    }
+
 
 
 

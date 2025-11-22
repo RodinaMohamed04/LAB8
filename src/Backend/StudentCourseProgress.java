@@ -14,5 +14,22 @@ public class StudentCourseProgress {
         this.completedLessons = new ArrayList<>();
     }
 
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
+    }
+
+    public void setCompletedLessons(ArrayList<String> completedLessons) {
+        this.completedLessons = completedLessons;
+    }
+    public String getCourseId() {
+        return courseId;
+    }
+
+    public ArrayList<String> getCompletedLessons() {
+        return completedLessons;
+    }
+
 
 }
+
+

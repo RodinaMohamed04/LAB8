@@ -40,43 +40,64 @@ public class StudentEnrolled extends javax.swing.JFrame {
         
     }
 
-    private void loadCourses() {
-         ArrayList<String> courses = userService.displayEnrolledCourses(student.getUserId());
+   /* private void loadCourses() {
+        ArrayList<String> courses = userService.displayEnrolledCourses(student.getUserId());
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new String[]{"Course Id", "Course Name", "Progress"});
         jTable1.setModel(model);
 
-      
-    for (String cId : courses) {
-    Course course = courseService.getCourseById(cId);
-    if (course != null) {
+        for (String cId : courses) {
+            Course course = courseService.getCourseById(cId);
+            if (course != null) {
+
+                ArrayList<String> completedLessons = new ArrayList<>();
+                for (Backend.StudentCourseProgress p : student.getCoursesProgress()) {
+                    if (p.getCourseId().equals(cId)) {
+                        completedLessons = p.getCompletedLessons();
+                        break;
+                    }
+                }
+
+
+                int totalLessons = course.getLessons().size();
+                int completedCount = completedLessons.size();
+                String progress = totalLessons > 0 ? (completedCount * 100 / totalLessons) + "%" : "0%";
+
+
                 model.addRow(new Object[]{
-                    course.getCourseId(),
-                    course.getCourseName(),
-                    "0%"
+                        course.getCourseId(),
+                        course.getCourseName(),
+                        progress
                 });
             }
         }
 
         jTable1.setModel(model);
-        
-        /*jTable1.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                int row = jTable1.rowAtPoint(evt.getPoint());
-                int col = jTable1.columnAtPoint(evt.getPoint());
+    }*/
+   private void loadCourses() {
+       ArrayList<String> courses = userService.displayEnrolledCourses(student.getUserId());
+       DefaultTableModel model = new DefaultTableModel();
+       model.setColumnIdentifiers(new String[]{"Course Id", "Course Name", "Progress"});
+       jTable1.setModel(model);
 
-                if (col == 4) {
-                   String courseId = (String) jTable1.getValueAt(row, 0);
-                    String courseName = (String) jTable1.getValueAt(row, 1);
-                    ViewLessons vl = new ViewLessons(student, courseId);
-                    vl.setTitle("Lessons for: " + courseName);
-                    vl.setVisible(true);
-                    StudentEnrolled.this.setVisible(false);
-                }
-            }
-        });*/
-    }
-    
+       for (String cId : courses) {
+           Course course = courseService.getCourseById(cId);
+           if (course != null) {
+               int totalLessons = course.getLessons().size();
+               int progress = student.getProgressPercentage(cId, totalLessons);
+               String progressStr = progress + "%";
+
+               model.addRow(new Object[]{
+                       course.getCourseId(),
+                       course.getCourseName(),
+                       progressStr
+               });
+           }
+       }
+   }
+
+
+
     private void openSelectedCourseLessons() {
     int selectedRow = jTable1.getSelectedRow();
     if (selectedRow == -1) {

@@ -78,7 +78,7 @@ public class JsonDataBaseManager {
                 String role = j.getString("Role");
 
                 // ---------- Student ----------
-                if (role.equalsIgnoreCase("Student")) {
+                /*if (role.equalsIgnoreCase("Student")) {
                     Student s = new Student(name, id, email, pass);
 
                     // load enrolled courses
@@ -103,7 +103,41 @@ public class JsonDataBaseManager {
                     }
 
                     users.add(s);
+                }*/
+                if (role.equalsIgnoreCase("Student")) {
+                    Student s = new Student(name, id, email, pass);
+
+                    // 1) Load enrolledCourses ONLY (without creating empty progress)
+                    JSONArray enrolled = j.optJSONArray("enrolledCourses");
+                    if (enrolled != null) {
+                        ArrayList<String> enrolledList = new ArrayList<>();
+                        for (int k = 0; k < enrolled.length(); k++) {
+                            enrolledList.add(enrolled.getString(k));
+                        }
+                        s.setEnrolledCourses(enrolledList);
+                    }
+
+                    // 2) Load progress (actual data from JSON)
+                    JSONArray progress = j.optJSONArray("progress");
+                    if (progress != null) {
+                        for (int k = 0; k < progress.length(); k++) {
+                            JSONObject pr = progress.getJSONObject(k);
+
+                            String courseId = pr.getString("courseId");
+
+                            ArrayList<String> completed = new ArrayList<>();
+                            JSONArray c = pr.getJSONArray("completedLessons");
+                            for (int t = 0; t < c.length(); t++) {
+                                completed.add(c.getString(t));
+                            }
+
+                            s.addProgress(courseId, completed);
+                        }
+                    }
+
+                    users.add(s);
                 }
+
 
                 // ---------- Instructor ----------
                 else if (role.equalsIgnoreCase("Instructor")) {

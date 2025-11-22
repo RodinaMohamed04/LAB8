@@ -75,6 +75,10 @@ public class User {
         }
     }
 
+    public static void setCounter(int newValue) {
+        nextID.set(newValue);
+    }
+
     public String getRole() {
         return role;
     }
