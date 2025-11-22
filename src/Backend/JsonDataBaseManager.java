@@ -150,6 +150,13 @@ public class JsonDataBaseManager {
 
                     users.add(ins);
                 }
+                // ---------- Admin ----------
+                else if (role.equalsIgnoreCase("Admin")) {
+                    Admin admin = new Admin(name, id, email, pass);
+
+
+                    users.add(admin);
+                }
             }
 
         } catch (Exception e) {
@@ -171,11 +178,9 @@ public class JsonDataBaseManager {
     }
 
 
-
     /// /// courses and lessons save and read
 
-    public static void saveCourse(ArrayList<Course> courses)
-    {
+    public static void saveCourse(ArrayList<Course> courses) {
         JSONArray arr = new JSONArray();
         for (Course c : courses) {
             JSONObject j = new JSONObject();
@@ -184,6 +189,7 @@ public class JsonDataBaseManager {
             j.put("courseName", c.getCourseName());
             j.put("courseDescription", c.getCourseDescription());
             j.put("InstructorId", c.getInstructorId());
+            j.put("status", c.getStatus());
 
             JSONArray studentArr = new JSONArray();
             for (Student s : c.getStudents()) {
@@ -212,8 +218,7 @@ public class JsonDataBaseManager {
         writeToFile(COURSES_FILE, arr);
     }
 
-    public static  ArrayList<Course> readCourse()
-    {
+    public static ArrayList<Course> readCourse() {
         ArrayList<Course> courses = new ArrayList<>();
 
         try {
@@ -229,22 +234,25 @@ public class JsonDataBaseManager {
                 String courseName = j.getString("courseName");
                 String courseDescription = j.getString("courseDescription");
                 int instructorId = j.getInt("InstructorId");
+                String status = j.optString("status", "PENDING");
 
                 Course c = new Course(courseId, courseName, courseDescription, instructorId);
+                c.setStatus(status);
+
 
                 JSONArray studentArr = j.getJSONArray("students");
 
                 for (int k = 0; k < studentArr.length(); k++) {
                     int studentId = studentArr.getInt(k);
 
-                    c.getStudents().add(new Student("temp",studentId,"temp","temp"));
+                    c.getStudents().add(new Student("temp", studentId, "temp", "temp"));
 
                 }
                 JSONArray lessonArr = j.getJSONArray("lessons");
                 for (int k = 0; k < lessonArr.length(); k++) {
                     JSONObject jl = lessonArr.getJSONObject(k);
 
-                    Lesson l  = new Lesson(jl.getString("lessonId"), jl.getString("title"), jl.getString("content"));
+                    Lesson l = new Lesson(jl.getString("lessonId"), jl.getString("title"), jl.getString("content"));
 
                     JSONArray resArr = jl.getJSONArray("resources");
                     for (int t = 0; t < resArr.length(); t++) {
@@ -256,8 +264,7 @@ public class JsonDataBaseManager {
 
                 courses.add(c);
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error reading courses.json");
         }
         return courses;
