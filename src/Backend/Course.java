@@ -68,7 +68,7 @@ public class Course {
     public void setLessons(ArrayList<Lesson> lessons) {
         this.lessons = lessons;
     }
-}
+
 
 public String getStatus() {
     return status;
@@ -76,4 +76,5 @@ public String getStatus() {
 
 public void setStatus(String status) {
     this.status = status;
+}
 }
